@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>论坛系统（精简开源版）</title>
+<meta name="description" content="免费开源的论坛/BBS系统精简版：版块浏览、发帖回复、置顶锁定，后台版主管理，真实增删改查功能，纯前端+localStorage实现，可作为学习或二次开发起点。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="#/" class="brand">论坛<span class="accent">精简版</span></a>
+    <a href="admin.html" class="nav-link">进入版主后台 →</a>
+  </header>
+
+  <main class="container">
+    <section id="view-home" class="view active">
+      <div class="page-head">
+        <h1>选择一个版块开始讨论</h1>
+        <p>这是一个真实可用的精简开源论坛系统，发帖、回复、置顶、锁定都是真功能，数据保存在你浏览器本地。</p>
+      </div>
+      <div id="boardGrid" class="board-grid"></div>
+    </section>
+
+    <section id="view-board" class="view">
+      <a href="#/" class="back-link">← 返回版块列表</a>
+      <div class="page-head">
+        <h1 id="boardTitle"></h1>
+        <p id="boardDesc"></p>
+      </div>
+
+      <div id="threadList" class="thread-list"></div>
+
+      <div class="post-box">
+        <h3>发帖</h3>
+        <div id="newThreadMsg"></div>
+        <form id="threadForm" novalidate>
+          <div class="field"><label>昵称</label><input id="threadAuthorInput" type="text" required placeholder="你的显示名"></div>
+          <div class="field"><label>标题</label><input id="threadTitleInput" type="text" required placeholder="帖子标题"></div>
+          <div class="field"><label>内容</label><textarea id="threadContentInput" rows="4" required placeholder="说点什么……"></textarea></div>
+          <button type="submit" class="btn btn-primary btn-block">发布主题</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="view-thread" class="view">
+      <a href="#" id="backToBoardLink" class="back-link">← 返回帖子列表</a>
+      <div id="threadDetail" class="thread-detail"></div>
+
+      <h3 class="reply-heading">全部回复 (<span id="replyCountLabel">0</span>)</h3>
+      <div id="replyList" class="reply-list"></div>
+
+      <div id="replyBox"></div>
+    </section>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

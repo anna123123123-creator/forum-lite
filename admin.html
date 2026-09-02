@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>版主后台 · 论坛系统（精简开源版）</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="sidebar">
+      <div class="brand">论坛<span class="accent">精简版</span> 后台</div>
+      <div class="side-link active" data-view="dashboard">仪表盘</div>
+      <div class="side-link" data-view="boards">版块管理</div>
+      <div class="side-link" data-view="threads">内容管理</div>
+      <div class="side-link" id="btnResetData" style="margin-top:20px;color:var(--red)">重置示例数据</div>
+      <a href="index.html" class="side-link">← 返回前台</a>
+    </aside>
+
+    <main class="admin-main">
+      <section id="view-dashboard" class="admin-view active">
+        <div class="page-head"><h1>仪表盘</h1><p>论坛内容概览。</p></div>
+        <div class="stat-grid" id="statGrid"></div>
+        <table>
+          <thead><tr><th>最新主题</th><th>版块</th><th>作者</th><th>发布时间</th></tr></thead>
+          <tbody id="recentThreadsBody"></tbody>
+        </table>
+      </section>
+
+      <section id="view-boards" class="admin-view">
+        <div class="page-head"><h1>版块管理</h1><p>添加、编辑或删除版块。删除版块会同时删除其下的所有主题和回复。</p></div>
+        <div class="table-toolbar">
+          <span></span>
+          <button class="btn btn-primary btn-sm" id="btnAddBoard">+ 新增版块</button>
+        </div>
+        <table>
+          <thead><tr><th>图标</th><th>版块名称</th><th>简介</th><th>主题数</th><th>操作</th></tr></thead>
+          <tbody id="boardsBody"></tbody>
+        </table>
+      </section>
+
+      <section id="view-threads" class="admin-view">
+        <div class="page-head"><h1>内容管理</h1><p>置顶、锁定或删除主题帖。</p></div>
+        <table>
+          <thead><tr><th>标题</th><th>版块</th><th>作者</th><th>回复数</th><th>浏览数</th><th>状态</th><th>操作</th></tr></thead>
+          <tbody id="threadsBody"></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="boardModalBackdrop">
+    <div class="modal">
+      <button class="modal-close" id="btnCloseBoardModal">&times;</button>
+      <h2 id="boardModalTitle">新增版块</h2>
+      <div id="boardModalMsg"></div>
+      <form id="boardForm" novalidate>
+        <input type="hidden" id="boardIdInput">
+        <div class="field"><label>图标（Emoji）</label><input id="boardIconInput" type="text" required maxlength="4" placeholder="💬"></div>
+        <div class="field"><label>版块名称</label><input id="boardNameInput" type="text" required></div>
+        <div class="field"><label>简介</label><textarea id="boardDescInput" rows="3" required></textarea></div>
+        <button type="submit" class="btn btn-primary btn-block">保存</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
